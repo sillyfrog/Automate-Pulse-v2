@@ -1,0 +1,19 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "A Pulse Hub at this address is already configured"
+    },
+    "error": {
+      "cannot_connect": "Can not connect / invalid response from Hub",
+      "unknown": "Unknown error communicating with Hub"
+    },
+    "step": {
+      "user": {
+        "data": {
+          "host": "IP Address / Hostname"
+        }
+      }
+    }
+  },
+  "title": "Automate Pulse Hub v2"
+}
