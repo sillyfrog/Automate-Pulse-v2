@@ -20,12 +20,15 @@ def async_add_automate_entities(
 
     new_items = []
     for unique_id, roller in api.items():
+        print(f"XXXXXXXXXXXXX: {entity_class.__name__} {unique_id}, Current: {current}")
         if unique_id not in current:
             _LOGGER.debug("New %s %s", entity_class.__name__, unique_id)
             new_item = entity_class(roller)
+            print("XXXX ADDING", new_item)
             current.add(unique_id)
             new_items.append(new_item)
 
+    print("XXXXXXXXXXXXXX add_entities", async_add_entities)
     async_add_entities(new_items)
 
 

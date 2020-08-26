@@ -11,7 +11,7 @@ from .hub import PulseHub
 
 CONFIG_SCHEMA = vol.Schema({DOMAIN: vol.Schema({})}, extra=vol.ALLOW_EXTRA)
 
-PLATFORMS = ["cover"]
+PLATFORMS = ["cover", "sensor"]
 
 
 async def async_setup(hass: HomeAssistant, config: dict):
