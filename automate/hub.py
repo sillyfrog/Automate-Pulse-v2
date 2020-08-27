@@ -35,11 +35,12 @@ class PulseHub:
         """Return the host of this hub."""
         return self.config_entry.data["host"]
 
-    async def async_setup(self, tries=0):
+    async def async_setup(self):
         """Set up a hub based on host parameter."""
         host = self.host
 
         hub = aiopulse2.Hub(host)
+
         self.api = hub
 
         hub.callback_subscribe(self.async_notify_update)
@@ -68,11 +69,10 @@ class PulseHub:
 
         return True
 
-    async def async_notify_update(self, hub, update_type):
+    async def async_notify_update(self, hub=None):
         """Evaluate entities when hub reports that update has occurred."""
-        _LOGGER.debug("Hub {update_type.name} updated")
+        _LOGGER.debug("Hub {self.title} updated")
 
-        # if update_type == aiopulse2.UpdateType.rollers:
         await update_devices(self.hass, self.config_entry, self.api.rollers)
         self.hass.config_entries.async_update_entry(self.config_entry, title=self.title)
 

@@ -1,4 +1,6 @@
 """Support for Automate Roller Blinds."""
+import aiopulse2
+
 from homeassistant.components.cover import (
     ATTR_POSITION,
     SUPPORT_CLOSE,
@@ -11,20 +13,13 @@ from homeassistant.components.cover import (
     SUPPORT_STOP_TILT,
     CoverEntity,
 )
-from homeassistant.const import (
-    ATTR_ID,
-    ATTR_NAME,
-    ATTR_VOLTAGE,
-    ATTR_BATTERY_LEVEL,
-)
+from homeassistant.const import ATTR_BATTERY_LEVEL, ATTR_ID, ATTR_NAME, ATTR_VOLTAGE
 from homeassistant.core import callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 
 from .base import AutomateBase
 from .const import AUTOMATE_HUB_UPDATE, DOMAIN
 from .helpers import async_add_automate_entities
-
-import aiopulse2
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
@@ -60,7 +55,6 @@ class AutomateCover(AutomateBase, CoverEntity):
         position = None
         if self.roller.closed_percent is not None:
             position = 100 - self.roller.closed_percent
-        print("---------------XXX< Reported position:", position, self.roller.name)
         return position
 
     @property
@@ -94,14 +88,6 @@ class AutomateCover(AutomateBase, CoverEntity):
         return supported_features
 
     @property
-    def XXXdevice_info(self):
-        return {
-            "name": self.roller.name,
-            "model": self.roller.devicetype,
-            "sw_version": self.roller.version,
-        }
-
-    @property
     def device_state_attributes(self):
         """Return the state attributes of the device."""
         state_attrs = super().device_state_attributes
@@ -112,19 +98,16 @@ class AutomateCover(AutomateBase, CoverEntity):
         if self.roller.battery_percent is not None:
             state_attrs[ATTR_BATTERY_LEVEL] = self.roller.battery_percent
             state_attrs[ATTR_VOLTAGE] = self.roller.battery
-        print(
-            "==============XXX Returning attrib", state_attrs,
-        )
         return state_attrs
 
     @property
     def is_opening(self):
-        """Is cover opening/moving up"""
+        """Is cover opening/moving up."""
         return self.roller.action == aiopulse2.MovingAction.up
 
     @property
     def is_closing(self):
-        """Is cover closing/moving down"""
+        """Is cover closing/moving down."""
         return self.roller.action == aiopulse2.MovingAction.down
 
     @property

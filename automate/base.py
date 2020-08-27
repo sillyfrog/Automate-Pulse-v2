@@ -1,6 +1,7 @@
 """Base class for Automate Roller Blinds."""
-import aiopulse2
 import logging
+
+import aiopulse2
 
 from homeassistant.core import callback
 from homeassistant.helpers import entity
@@ -20,9 +21,14 @@ class AutomateBase(entity.Entity):
         """Initialize the roller."""
         self.roller = roller
 
+    @property
+    def title(self):
+        """Return the title of the device shown in the integrations list."""
+        return f"{self.roller.name} ({self.roller.devicetype})"
+
     async def async_remove_and_unregister(self):
         """Unregister from entity and device registry and call entity remove function."""
-        _LOGGER.error("Removing %s %s", self.__class__.__name__, self.unique_id)
+        _LOGGER.info("Removing %s %s", self.__class__.__name__, self.unique_id)
 
         ent_registry = await get_ent_reg(self.hass)
         if self.entity_id in ent_registry.entities:
@@ -74,21 +80,17 @@ class AutomateBase(entity.Entity):
         return self.roller.id
 
     @property
-    def device_id(self):
-        """Return the ID of this roller."""
-        return self.roller.id
-
-    @property
     def name(self):
         """Return the name of roller."""
-        return self.roller.name
+        name = f"XXX 2 NAME {self.roller.name}"
+        return name
 
     @property
     def device_info(self):
         """Return the device info."""
         return {
             "identifiers": {(DOMAIN, self.roller.id)},
-            "name": self.roller.name,
-            "manufacturer": "Automate",
-            "via_device": (DOMAIN, self.roller.hub.id),
+            "manufacturer": "AutomateXXX3",
+            "model": self.roller.devicetype,
+            "name": f"XXX 3 {self.roller.name}",
         }

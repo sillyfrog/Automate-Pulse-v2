@@ -1,8 +1,8 @@
 """Support for Automate Roller Blind Batteries."""
 from homeassistant.const import (
     DEVICE_CLASS_BATTERY,
-    UNIT_PERCENTAGE,
     DEVICE_CLASS_SIGNAL_STRENGTH,
+    UNIT_PERCENTAGE,
 )
 from homeassistant.core import callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
@@ -77,7 +77,6 @@ class AutomateSignal(AutomateBase):
     @property
     def name(self):
         """Return the name of roller."""
-        print("XXX Wifi Name:", "{super().name} WiFi Signal")
         return f"{super().name} WiFi Signal"
 
     @property
