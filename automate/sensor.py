@@ -6,6 +6,7 @@ from homeassistant.const import (
 )
 from homeassistant.core import callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
+from homeassistant.const import ATTR_VOLTAGE
 
 from .base import AutomateBase
 from .const import AUTOMATE_HUB_UPDATE, DOMAIN
@@ -42,7 +43,6 @@ class AutomateBattery(AutomateBase):
 
     device_class = DEVICE_CLASS_BATTERY
     unit_of_measurement = UNIT_PERCENTAGE
-    device_state_attributes = {"somerandostate": 12445}
 
     @property
     def name(self):
@@ -59,13 +59,16 @@ class AutomateBattery(AutomateBase):
         """Return a unique identifier for this device."""
         return f"{self.roller.id}_battery"
 
-    # @property
-    # def device_info(self):
-    #     """XXX Return the device info."""
-    #     info = super().device_info
-    #     # info["via_device"] = (DOMAIN, self.roller.id)
-    #     info["identifiers"] = {(DOMAIN, self.roller.id)}
-    #     return info
+    @property
+    def device_state_attributes(self):
+        """Additional information about the battery state."""
+        attrs = super().device_state_attributes
+        if attrs is None:
+            attrs = {}
+        else:
+            attrs = attrs.copy()
+        attrs[ATTR_VOLTAGE] = self.roller.battery
+        return attrs
 
 
 class AutomateSignal(AutomateBase):
@@ -88,13 +91,3 @@ class AutomateSignal(AutomateBase):
     def unique_id(self):
         """Return a unique identifier for this device."""
         return f"{self.roller.id}_signal"
-
-    # @property
-    # def device_info(self):
-    #     """XXX Return the device info."""
-    #     info = super().device_info
-    #     # info["via_device"] = (DOMAIN, self.roller.id)
-    #     info["identifiers"] = {(DOMAIN, self.roller.id)}
-    #     print()
-    #     print("XXX returing: ", info)
-    #     return info

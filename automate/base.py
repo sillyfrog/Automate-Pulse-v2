@@ -82,15 +82,16 @@ class AutomateBase(entity.Entity):
     @property
     def name(self):
         """Return the name of roller."""
-        name = f"XXX 2 NAME {self.roller.name}"
-        return name
+        return self.roller.name
 
     @property
     def device_info(self):
         """Return the device info."""
         return {
             "identifiers": {(DOMAIN, self.roller.id)},
-            "manufacturer": "AutomateXXX3",
+            "manufacturer": "Automate",
             "model": self.roller.devicetype,
-            "name": f"XXX 3 {self.roller.name}",
+            "sw_version": self.roller.version,
+            "via_device": (DOMAIN, self.roller.hub.id),
+            "name": self.name,
         }

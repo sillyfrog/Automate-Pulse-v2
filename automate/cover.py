@@ -13,7 +13,6 @@ from homeassistant.components.cover import (
     SUPPORT_STOP_TILT,
     CoverEntity,
 )
-from homeassistant.const import ATTR_BATTERY_LEVEL, ATTR_ID, ATTR_NAME, ATTR_VOLTAGE
 from homeassistant.core import callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 
@@ -64,10 +63,6 @@ class AutomateCover(AutomateBase, CoverEntity):
         None is unknown, 0 is closed, 100 is fully open.
         """
         return None
-        # position = None
-        # if self.roller.type in [7, 10]:
-        #     position = 100 - self.roller.closed_percent
-        # return position
 
     @property
     def supported_features(self):
@@ -86,19 +81,6 @@ class AutomateCover(AutomateBase, CoverEntity):
             )
 
         return supported_features
-
-    @property
-    def device_state_attributes(self):
-        """Return the state attributes of the device."""
-        state_attrs = super().device_state_attributes
-        if state_attrs is None:
-            state_attrs = {}
-        state_attrs[ATTR_ID] = self.roller.id
-        state_attrs[ATTR_NAME] = self.roller.name
-        if self.roller.battery_percent is not None:
-            state_attrs[ATTR_BATTERY_LEVEL] = self.roller.battery_percent
-            state_attrs[ATTR_VOLTAGE] = self.roller.battery
-        return state_attrs
 
     @property
     def is_opening(self):
