@@ -87,7 +87,7 @@ class AutomateBase(entity.Entity):
     def device_info(self):
         """Return the device info."""
         return {
-            "identifiers": {(DOMAIN, self.unique_id)},
+            "identifiers": {(DOMAIN, self.roller.id)},
             "name": self.roller.name,
             "manufacturer": "Automate",
             "via_device": (DOMAIN, self.roller.hub.id),

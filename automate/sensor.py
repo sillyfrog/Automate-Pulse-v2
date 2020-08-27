@@ -54,16 +54,17 @@ class AutomateBattery(AutomateBase):
         """Return the state of the device battery."""
         return self.roller.battery_percent
 
-    # @property
-    # def unique_id(self):
-    #     """Return a unique identifier for this device."""
-    #     return f"{self.roller.id}-battery"
+    @property
+    def unique_id(self):
+        """Return a unique identifier for this device."""
+        return f"{self.roller.id}_battery"
 
     # @property
     # def device_info(self):
     #     """XXX Return the device info."""
     #     info = super().device_info
-    #     info["via_device"] = (DOMAIN, self.roller.id)
+    #     # info["via_device"] = (DOMAIN, self.roller.id)
+    #     info["identifiers"] = {(DOMAIN, self.roller.id)}
     #     return info
 
 
@@ -87,13 +88,14 @@ class AutomateSignal(AutomateBase):
     @property
     def unique_id(self):
         """Return a unique identifier for this device."""
-        return f"{self.roller.id}-signal"
+        return f"{self.roller.id}_signal"
 
-    @property
-    def device_info(self):
-        """XXX Return the device info."""
-        info = super().device_info
-        info["via_device"] = (DOMAIN, self.roller.id)
-        print()
-        print("XXX returing: ", info)
-        return info
+    # @property
+    # def device_info(self):
+    #     """XXX Return the device info."""
+    #     info = super().device_info
+    #     # info["via_device"] = (DOMAIN, self.roller.id)
+    #     info["identifiers"] = {(DOMAIN, self.roller.id)}
+    #     print()
+    #     print("XXX returing: ", info)
+    #     return info
