@@ -12,6 +12,7 @@ from homeassistant.components.cover import (
     SUPPORT_STOP,
     SUPPORT_STOP_TILT,
     CoverEntity,
+    DEVICE_CLASS_SHADE,
 )
 from homeassistant.core import callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
@@ -81,6 +82,22 @@ class AutomateCover(AutomateBase, CoverEntity):
             )
 
         return supported_features
+
+    @property
+    def device_info(self):
+        """Return the device info."""
+        attrs = super().device_info
+        attrs["manufacturer"] = "Automate"
+        attrs["model"] = self.roller.devicetype
+        attrs["sw_version"] = self.roller.version
+        attrs["via_device"] = (DOMAIN, self.roller.hub.id)
+        attrs["name"] = self.name
+        return attrs
+
+    @property
+    def device_class(self):
+        """Class of the cover, a shade."""
+        return DEVICE_CLASS_SHADE
 
     @property
     def is_opening(self):

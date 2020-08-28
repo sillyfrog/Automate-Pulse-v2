@@ -89,9 +89,4 @@ class AutomateBase(entity.Entity):
         """Return the device info."""
         return {
             "identifiers": {(DOMAIN, self.roller.id)},
-            "manufacturer": "Automate",
-            "model": self.roller.devicetype,
-            "sw_version": self.roller.version,
-            "via_device": (DOMAIN, self.roller.hub.id),
-            "name": self.name,
         }

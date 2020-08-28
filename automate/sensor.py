@@ -80,7 +80,7 @@ class AutomateSignal(AutomateBase):
     @property
     def name(self):
         """Return the name of roller."""
-        return f"{super().name} WiFi Signal"
+        return f"{super().name} Signal"
 
     @property
     def state(self):
