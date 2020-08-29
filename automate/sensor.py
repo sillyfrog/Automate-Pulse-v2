@@ -47,6 +47,8 @@ class AutomateBattery(AutomateBase):
     @property
     def name(self):
         """Return the name of roller."""
+        if super().name is None:
+            return None
         return f"{super().name} Battery"
 
     @property
@@ -80,6 +82,8 @@ class AutomateSignal(AutomateBase):
     @property
     def name(self):
         """Return the name of roller."""
+        if super().name is None:
+            return None
         return f"{super().name} Signal"
 
     @property

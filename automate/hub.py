@@ -39,7 +39,7 @@ class PulseHub:
         """Set up a hub based on host parameter."""
         host = self.host
 
-        hub = aiopulse2.Hub(host)
+        hub = aiopulse2.Hub(host, propagate_callbacks=True)
 
         self.api = hub
 

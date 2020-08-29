@@ -26,6 +26,11 @@ class AutomateBase(entity.Entity):
         """Return the title of the device shown in the integrations list."""
         return f"{self.roller.name} ({self.roller.devicetype})"
 
+    @property
+    def available(self) -> bool:
+        """Return True if roller and hub is available."""
+        return self.roller.online and self.roller.hub.connected
+
     async def async_remove_and_unregister(self):
         """Unregister from entity and device registry and call entity remove function."""
         _LOGGER.info("Removing %s %s", self.__class__.__name__, self.unique_id)
@@ -87,6 +92,7 @@ class AutomateBase(entity.Entity):
     @property
     def device_info(self):
         """Return the device info."""
-        return {
+        attrs = {
             "identifiers": {(DOMAIN, self.roller.id)},
         }
+        return attrs
