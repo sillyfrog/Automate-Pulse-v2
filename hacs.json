@@ -1,0 +1,4 @@
+{
+  "name": "Automate Pulse Hub v2",
+  "iot_class": ["Local Polling", "Local Push"]
+}
