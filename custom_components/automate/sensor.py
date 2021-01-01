@@ -42,7 +42,7 @@ class AutomateBattery(AutomateBase):
     """Representation of a Automate cover battery sensor."""
 
     device_class = DEVICE_CLASS_BATTERY
-    unit_of_measurement = UNIT_PERCENTAGE
+    unit_of_measurement = PERCENTAGE
 
     @property
     def name(self):
