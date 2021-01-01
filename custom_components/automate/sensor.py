@@ -2,7 +2,7 @@
 from homeassistant.const import (
     DEVICE_CLASS_BATTERY,
     DEVICE_CLASS_SIGNAL_STRENGTH,
-    UNIT_PERCENTAGE,
+    PERCENTAGE,
 )
 from homeassistant.core import callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
