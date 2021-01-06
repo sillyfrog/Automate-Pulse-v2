@@ -2,7 +2,7 @@
 from homeassistant.const import (
     DEVICE_CLASS_BATTERY,
     DEVICE_CLASS_SIGNAL_STRENGTH,
-    UNIT_PERCENTAGE,
+    PERCENTAGE,
 )
 from homeassistant.core import callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
@@ -42,7 +42,7 @@ class AutomateBattery(AutomateBase):
     """Representation of a Automate cover battery sensor."""
 
     device_class = DEVICE_CLASS_BATTERY
-    unit_of_measurement = UNIT_PERCENTAGE
+    unit_of_measurement = PERCENTAGE
 
     @property
     def name(self):
