@@ -25,7 +25,8 @@ def async_add_automate_entities(
             _LOGGER.debug("New %s %s", entity_class.__name__, unique_id)
             new_item = entity_class(roller)
             current.add(unique_id)
-            new_items.append(new_item)
+            if new_item.include_entity():
+                new_items.append(new_item)
 
     async_add_entities(new_items)
 
@@ -41,5 +42,6 @@ async def update_devices(hass, config_entry, api):
         )
         if device is not None:
             dev_registry.async_update_device(
-                device.id, name=api_item.name,
+                device.id,
+                name=api_item.name,
             )

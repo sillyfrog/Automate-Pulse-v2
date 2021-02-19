@@ -3,6 +3,7 @@ import aiopulse2
 
 from homeassistant.components.cover import (
     ATTR_POSITION,
+    DEVICE_CLASS_SHADE,
     SUPPORT_CLOSE,
     SUPPORT_CLOSE_TILT,
     SUPPORT_OPEN,
@@ -12,7 +13,6 @@ from homeassistant.components.cover import (
     SUPPORT_STOP,
     SUPPORT_STOP_TILT,
     CoverEntity,
-    DEVICE_CLASS_SHADE,
 )
 from homeassistant.core import callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect

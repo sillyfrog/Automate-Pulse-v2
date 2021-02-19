@@ -1,12 +1,11 @@
 """Support for Automate Roller Blind Batteries."""
 from homeassistant.const import (
+    ATTR_VOLTAGE,
     DEVICE_CLASS_BATTERY,
     DEVICE_CLASS_SIGNAL_STRENGTH,
-    PERCENTAGE,
 )
 from homeassistant.core import callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
-from homeassistant.const import ATTR_VOLTAGE
 
 from .base import AutomateBase
 from .const import AUTOMATE_HUB_UPDATE, DOMAIN
@@ -42,11 +41,11 @@ class AutomateBattery(AutomateBase):
     """Representation of a Automate cover battery sensor."""
 
     device_class = DEVICE_CLASS_BATTERY
-    unit_of_measurement = PERCENTAGE
+    unit_of_measurement = "%"
 
     @property
     def name(self):
-        """Return the name of roller."""
+        """Return the name of roller Battery."""
         if super().name is None:
             return None
         return f"{super().name} Battery"
@@ -71,6 +70,10 @@ class AutomateBattery(AutomateBase):
             attrs = attrs.copy()
         attrs[ATTR_VOLTAGE] = self.roller.battery
         return attrs
+
+    def include_entity(self) -> bool:
+        """Return True if roller has a battery."""
+        return self.roller.has_battery
 
 
 class AutomateSignal(AutomateBase):
