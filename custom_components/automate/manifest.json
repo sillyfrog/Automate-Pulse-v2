@@ -1,9 +1,10 @@
 {
-  "domain": "automate",
+  "domain": "automatehacs",
   "name": "Automate Pulse Hub v2",
   "version": "0.9.0",
   "config_flow": true,
-  "documentation": "https://www.home-assistant.io/integrations/automate",
+  "documentation": "https://github.com/sillyfrog/Automate-Pulse-v2",
+  "issue_tracker": "https://github.com/sillyfrog/Automate-Pulse-v2/issues",
   "requirements": [
     "aiopulse2==0.6.0"
   ],
