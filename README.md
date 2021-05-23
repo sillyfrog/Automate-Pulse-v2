@@ -6,7 +6,21 @@ The Automate Pulse 2 Hub by Rollease Acmeda integration allows you to control an
 
 Devices are represented as a cover for monitoring and control as well as a sensor for monitoring battery level and signal strength.
 
-To set up this integration, click the + icon in the lower right and find the Automate Pulse Hub v2. This will prompt for the IP address of the hub and register the covers with Home Assistant. All devices are automatically discovered on the hub and you will have the opportunity to select the area each device is located.
+# Installation
+
+This integration is designed to be added as a custom [HACS](https://hacs.xyz/) repository. Start with [installing HACS](https://hacs.xyz/docs/installation/prerequisites).
+
+Once HACS is installed, go to HACS in the sidebar, in the top right click on the 3 dots, select Custom repositories, then enter `https://github.com/sillyfrog/Automate-Pulse-v2` for the repository URL, and select "Integration" for the Category, and click Add.
+
+Close the window and then click "Explore & Add Repositories" in the bottom right.
+
+Search for and select the "Rollease Acmeda Automate Pulse Hub v2" integration, then click "Install this repository in HACS" and click "Install".
+
+Once installed, restart Home Assistant.
+
+Once HA is back up, go to Configuration > Integrations > Add integration, and select "Automate Pulse Hub v2".
+
+This will prompt for the IP address of the hub and register the covers with Home Assistant. All devices are automatically discovered on the hub and you will have the opportunity to select the area each device is located.
 
 Once registration is complete, you should see a `cover` and two `sensor` entities for each device. The integration automatically manages the addition/update/removal of any devices connected on the hub at startup, including device names unless manually specified in Home Assistant.
 

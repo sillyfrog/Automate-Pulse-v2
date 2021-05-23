@@ -1,5 +1,5 @@
 {
-  "domain": "automatehacs",
+  "domain": "automate",
   "name": "Automate Pulse Hub v2",
   "version": "0.9.0",
   "config_flow": true,
