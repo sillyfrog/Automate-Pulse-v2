@@ -16,7 +16,7 @@ Close the window and then click "Explore & Add Repositories" in the bottom right
 
 Search for and select the "Rollease Acmeda Automate Pulse Hub v2" integration, then click "Install this repository in HACS" and click "Install".
 
-Once installed, restart Home Assistant.
+Once installed, restart Home Assistant (not strictly required as this uses a Config Flow, but it's good practice).
 
 Once HA is back up, go to Configuration > Integrations > Add integration, and select "Automate Pulse Hub v2".
 
