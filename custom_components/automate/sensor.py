@@ -1,8 +1,11 @@
 """Support for Automate Roller Blind Batteries."""
+from homeassistant.components.sensor import SensorEntity
 from homeassistant.const import (
     ATTR_VOLTAGE,
     DEVICE_CLASS_BATTERY,
     DEVICE_CLASS_SIGNAL_STRENGTH,
+    PERCENTAGE,
+    SIGNAL_STRENGTH_DECIBELS,
 )
 from homeassistant.core import callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
@@ -37,11 +40,11 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     )
 
 
-class AutomateBattery(AutomateBase):
+class AutomateBattery(AutomateBase, SensorEntity):
     """Representation of a Automate cover battery sensor."""
 
-    device_class = DEVICE_CLASS_BATTERY
-    unit_of_measurement = "%"
+    _attr_device_class = DEVICE_CLASS_BATTERY
+    _attr_unit_of_measurement = PERCENTAGE
 
     @property
     def name(self):
@@ -76,11 +79,12 @@ class AutomateBattery(AutomateBase):
         return self.roller.has_battery
 
 
-class AutomateSignal(AutomateBase):
+class AutomateSignal(AutomateBase, SensorEntity):
     """Representation of a Automate cover WiFi signal sensor."""
 
-    device_class = DEVICE_CLASS_SIGNAL_STRENGTH
-    unit_of_measurement = "dB"
+    _attr_device_class = DEVICE_CLASS_SIGNAL_STRENGTH
+    _attr_unit_of_measurement = SIGNAL_STRENGTH_DECIBELS
+    entity_registry_enabled_default = False
 
     @property
     def name(self):
