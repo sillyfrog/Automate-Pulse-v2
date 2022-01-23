@@ -1,6 +1,6 @@
 # Rollease Acmeda Automate Pulse Hub v2 integration for Home Assistant
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/custom-components/hacs)
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 
 The Automate Pulse 2 Hub by Rollease Acmeda integration allows you to control and monitor covers via your Automate Pulse v2 Hub (see the [acmeda](/integrations/acmeda) integration for the v1 hub). The integration uses an [API](https://pypi.org/project/aiopulse2/) to directly communicate with hubs on the local network, rather than connecting via the cloud. [See this integration](https://www.home-assistant.io/integrations/acmeda/) if you have a v1 hub.
 
@@ -32,3 +32,4 @@ The integration has the following limitations:
 
 - covers with position as well as tilt are not yet supported (I'm not sure if such a product exists).
 - the integration doesn't make use of rooms and scenes configured in the hub, use the equivalent functionality in Home Assistant instead.
+- when adding new covers, you may need to restart Home Assistant to see the full details _after_ updating the name in the *Pulse 2* app.
