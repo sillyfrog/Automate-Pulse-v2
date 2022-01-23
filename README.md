@@ -22,7 +22,7 @@ Once HA is back up, go to Configuration > Integrations > Add integration, and se
 
 This will prompt for the IP address of the hub and register the covers with Home Assistant. All devices are automatically discovered on the hub and you will have the opportunity to select the area each device is located.
 
-Once registration is complete, you should see a `cover` and a `sensor` entitie for the battery for each device. Additionally there is a disabled sensors for the signal strength. The integration automatically manages the addition/update/removal of any devices connected on the hub at startup, including device names unless manually specified in Home Assistant.
+Once registration is complete, you should see a `cover` and a `sensor` entity for the battery for each device. Additionally there is a disabled sensors for the signal strength. The integration automatically manages the addition/update/removal of any devices connected on the hub at startup, including device names unless manually specified in Home Assistant.
 
 ## Caveats
 
