@@ -64,9 +64,9 @@ class AutomateBattery(AutomateBase, SensorEntity):
         return f"{self.roller.id}_battery"
 
     @property
-    def device_state_attributes(self):
+    def extra_state_attributes(self):
         """Additional information about the battery state."""
-        attrs = super().device_state_attributes
+        attrs = super().extra_state_attributes
         if attrs is None:
             attrs = {}
         else:
