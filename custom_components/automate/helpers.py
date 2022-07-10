@@ -33,7 +33,7 @@ def async_add_automate_entities(
 
 async def update_devices(hass, config_entry, api):
     """Tell hass that device info has been updated."""
-    dev_registry = await get_dev_reg(hass)
+    dev_registry = get_dev_reg(hass)
 
     for api_item in api.values():
         # Update Device name

@@ -43,11 +43,11 @@ class AutomateBase(entity.Entity):
         """Unregister from entity and device registry and call entity remove function."""
         _LOGGER.info("Removing %s %s", self.__class__.__name__, self.unique_id)
 
-        ent_registry = await get_ent_reg(self.hass)
+        ent_registry = get_ent_reg(self.hass)
         if self.entity_id in ent_registry.entities:
             ent_registry.async_remove(self.entity_id)
 
-        dev_registry = await get_dev_reg(self.hass)
+        dev_registry = get_dev_reg(self.hass)
         device = dev_registry.async_get_device(
             identifiers={(DOMAIN, self.unique_id)}, connections=set()
         )
