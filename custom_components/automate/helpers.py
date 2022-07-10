@@ -2,7 +2,7 @@
 import logging
 
 from homeassistant.core import callback
-from homeassistant.helpers.device_registry import async_get_registry as get_dev_reg
+from homeassistant.helpers.device_registry import async_get as get_dev_reg
 
 from .const import DOMAIN
 
