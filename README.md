@@ -6,6 +6,8 @@ The Automate Pulse 2 Hub by Rollease Acmeda integration allows you to control an
 
 Devices are represented as a cover for monitoring and control as well as a sensor for monitoring battery level and signal strength.
 
+Please keep an eye on the Automate Shades web site on the status of firmware updates here: https://www.automateshades.com/firmware-updates/
+
 # Installation
 
 This integration is designed to be added as a custom [HACS](https://hacs.xyz/) repository. Start with [installing HACS](https://hacs.xyz/docs/installation/prerequisites).
