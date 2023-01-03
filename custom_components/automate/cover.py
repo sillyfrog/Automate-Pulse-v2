@@ -1,18 +1,10 @@
 """Support for Automate Roller Blinds."""
 import aiopulse2
-
 from homeassistant.components.cover import (
     ATTR_POSITION,
-    DEVICE_CLASS_SHADE,
-    SUPPORT_CLOSE,
-    SUPPORT_CLOSE_TILT,
-    SUPPORT_OPEN,
-    SUPPORT_OPEN_TILT,
-    SUPPORT_SET_POSITION,
-    SUPPORT_SET_TILT_POSITION,
-    SUPPORT_STOP,
-    SUPPORT_STOP_TILT,
+    CoverDeviceClass,
     CoverEntity,
+    CoverEntityFeature,
 )
 from homeassistant.core import callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
@@ -46,6 +38,8 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 class AutomateCover(AutomateBase, CoverEntity):
     """Representation of a Automate cover device."""
 
+    _attr_device_class = CoverDeviceClass.SHADE
+
     @property
     def current_cover_position(self):
         """Return the current position of the roller blind.
@@ -71,14 +65,17 @@ class AutomateCover(AutomateBase, CoverEntity):
         supported_features = 0
         if self.current_cover_position is not None:
             supported_features |= (
-                SUPPORT_OPEN | SUPPORT_CLOSE | SUPPORT_STOP | SUPPORT_SET_POSITION
+                CoverEntityFeature.OPEN
+                | CoverEntityFeature.CLOSE
+                | CoverEntityFeature.STOP
+                | CoverEntityFeature.SET_POSITION
             )
         if self.current_cover_tilt_position is not None:
             supported_features |= (
-                SUPPORT_OPEN_TILT
-                | SUPPORT_CLOSE_TILT
-                | SUPPORT_STOP_TILT
-                | SUPPORT_SET_TILT_POSITION
+                CoverEntityFeature.OPEN_TILT
+                | CoverEntityFeature.CLOSE_TILT
+                | CoverEntityFeature.STOP_TILT
+                | CoverEntityFeature.SET_TILT_POSITION
             )
 
         return supported_features
@@ -93,11 +90,6 @@ class AutomateCover(AutomateBase, CoverEntity):
         attrs["via_device"] = (DOMAIN, self.roller.hub.id)
         attrs["name"] = self.name
         return attrs
-
-    @property
-    def device_class(self):
-        """Class of the cover, a shade."""
-        return DEVICE_CLASS_SHADE
 
     @property
     def is_opening(self):
