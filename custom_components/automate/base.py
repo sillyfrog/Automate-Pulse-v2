@@ -1,4 +1,5 @@
 """Base class for Automate Roller Blinds."""
+
 import logging
 
 import aiopulse2

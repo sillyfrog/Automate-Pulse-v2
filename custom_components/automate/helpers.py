@@ -1,4 +1,5 @@
 """Helper functions for Automate Pulse."""
+
 import logging
 
 from homeassistant.core import callback

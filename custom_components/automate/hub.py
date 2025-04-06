@@ -1,11 +1,11 @@
 """Code to handle a Pulse Hub."""
+
 from __future__ import annotations
 
 import asyncio
 import logging
 
 import aiopulse2
-
 from homeassistant.helpers.dispatcher import async_dispatcher_send
 
 from .const import AUTOMATE_ENTITY_REMOVE, AUTOMATE_HUB_UPDATE

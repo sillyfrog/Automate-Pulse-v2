@@ -1,4 +1,5 @@
 """Support for Automate Roller Blind Batteries."""
+
 from homeassistant.components.sensor import (
     SensorDeviceClass,
     SensorEntity,

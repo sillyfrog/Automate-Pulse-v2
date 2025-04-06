@@ -1,4 +1,5 @@
 """Config flow for Automate Pulse Hub v2 integration."""
+
 import logging
 
 import aiopulse2

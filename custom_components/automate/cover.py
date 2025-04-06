@@ -1,4 +1,5 @@
 """Support for Automate Roller Blinds."""
+
 import aiopulse2
 from homeassistant.components.cover import (
     ATTR_POSITION,
