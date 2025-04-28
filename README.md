@@ -35,3 +35,18 @@ The integration has the following limitations:
 - covers with position as well as tilt are not yet supported (I'm not sure if such a product exists).
 - the integration doesn't make use of rooms and scenes configured in the hub, use the equivalent functionality in Home Assistant instead.
 - when adding new covers, you may need to restart Home Assistant to see the full details _after_ updating the name in the *Pulse 2* app.
+
+# Debugging
+
+If you are having issues with the integration, please enable debug logging for the integration by adding the following to your Home Assistant `configuration.yaml` file:
+
+```yaml
+logger:
+  default: warning
+  logs:
+    aiopulse2: debug
+    automate: debug
+    custom_components.automate: debug
+```
+
+Then restart Home Assistant and check the logs for any errors and/or provide for debugging.
