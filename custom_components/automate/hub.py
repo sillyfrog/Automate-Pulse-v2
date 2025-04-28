@@ -6,6 +6,7 @@ import asyncio
 import logging
 
 import aiopulse2
+from homeassistant.helpers import device_registry
 from homeassistant.helpers.dispatcher import async_dispatcher_send
 
 from .const import AUTOMATE_ENTITY_REMOVE, AUTOMATE_HUB_UPDATE
@@ -25,6 +26,7 @@ class PulseHub:
         self.tasks = []
         self.current_rollers = {}
         self.cleanup_callbacks = []
+        self._entered_into_device_registry = False
 
     @property
     def title(self):
@@ -71,7 +73,25 @@ class PulseHub:
 
     async def async_notify_update(self, hub=None):
         """Evaluate entities when hub reports that update has occurred."""
-        _LOGGER.debug("Hub {self.title} updated")
+        _LOGGER.debug("Hub %s updated", self.title)
+
+        # Check we have an ID, if not, wait for further updates
+        if not self.api.id:
+            _LOGGER.debug("Hub ID not yet available")
+            return
+
+        if not self._entered_into_device_registry:
+            _LOGGER.debug("Entering Hub %s device registry", self.title)
+
+            dev_registry = device_registry.async_get(self.hass)
+            dev_registry.async_get_or_create(
+                config_entry_id=self.config_entry.entry_id,
+                identifiers={("automate", self.api.id)},
+                manufacturer="Automate",
+                model="Pulse V2 Hub",
+                name=f"Pulse V2 Hub ({self.api.host})",
+            )
+            self._entered_into_device_registry = True
 
         await update_devices(self.hass, self.config_entry, self.api.rollers)
         self.hass.config_entries.async_update_entry(self.config_entry, title=self.title)
